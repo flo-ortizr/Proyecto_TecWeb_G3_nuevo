@@ -7,11 +7,16 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__Default=Host=db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
-      - Jwt__Key=${JWT_KEY}
-      - Jwt__Issuer=${JWT_ISSUER}
-      - Jwt__Audience=${JWT_AUDIENCE}
+      - JWT_KEY=bXlKd3RLZXk=
+      - JWT_ISSUER=elearning
+      - JWT_AUDIENCE=elearning_users
       - Jwt__ExpiresMinutes=60
       - Jwt__RefreshDays=14
+      - POSTGRES_DB=elearning2db
+      - POSTGRES_USER=elearning2user
+      - POSTGRES_PASSWORD=superelearner2
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
     depends_on:
       db:
         condition: service_healthy
