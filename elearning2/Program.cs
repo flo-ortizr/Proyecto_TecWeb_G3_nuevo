@@ -45,7 +45,7 @@ builder.Services.AddRateLimiter(options =>
 var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? builder.Configuration["Jwt:Key"];
 var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? builder.Configuration["Jwt:Issuer"];
 var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? builder.Configuration["Jwt:Audience"];
-var keyBytes = Convert.FromBase64String(jwtKey!);
+var keyBytes = Encoding.UTF8.GetBytes(jwtKey!);
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
