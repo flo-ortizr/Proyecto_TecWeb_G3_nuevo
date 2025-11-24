@@ -1,16 +1,22 @@
-# Etapa base para ejecutar la app
+# Base image to run the app
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
 WORKDIR /app
 EXPOSE 8080
 
-# Etapa de build: compila la app
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
+
+# Copy everything
 COPY . .
+
+# Publish the project (correct path!)
 RUN dotnet publish elearning2/elearning2.csproj -c Release -o /app/publish
 
-# Etapa final: ejecuta la app compilada
+# Final runtime image
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
+
+# Run the DLL that dotnet publish generates
 ENTRYPOINT ["dotnet", "elearning2.dll"]
