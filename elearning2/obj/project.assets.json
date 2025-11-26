@@ -9536,6 +9536,7 @@
       "DotNetEnv >= 3.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.0",
       "Microsoft.AspNetCore.RateLimiting >= 7.0.0-rc.2.22476.2",
+      "Microsoft.EntityFrameworkCore >= 9.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.1",
       "Microsoft.OpenApi >= 2.3.0",
@@ -9608,6 +9609,10 @@
           "Microsoft.AspNetCore.RateLimiting": {
             "target": "Package",
             "version": "[7.0.0-rc.2.22476.2, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[9.0.1, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

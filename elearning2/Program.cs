@@ -1,5 +1,9 @@
+using System;
 using Microsoft.AspNetCore.RateLimiting;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
@@ -7,8 +11,8 @@ using DotNetEnv;
 using elearning2.Data;
 using elearning2.Repositories;
 using elearning2.Services;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 //dotnet add package DotNetEnv
 
@@ -47,7 +51,11 @@ builder.Services.AddRateLimiter(options =>
 var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? builder.Configuration["Jwt:Key"];
 var jwtIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER") ?? builder.Configuration["Jwt:Issuer"];
 var jwtAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? builder.Configuration["Jwt:Audience"];
-var keyBytes = Encoding.UTF8.GetBytes(jwtKey!);
+if (string.IsNullOrEmpty(jwtKey))
+{
+    throw new Exception("JWT_KEY environment variable or configuration Jwt:Key is not set.");
+}
+var keyBytes = Encoding.UTF8.GetBytes(jwtKey);
 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -89,8 +97,7 @@ if (!string.IsNullOrEmpty(connectionString) &&
         Username = user,
         Password = pass,
         Database = uri.AbsolutePath.Trim('/'),
-        SslMode = SslMode.Require,
-        TrustServerCertificate = true
+        SslMode = SslMode.Require
     };
 
     connectionString = builderCs.ConnectionString;
@@ -128,6 +135,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseHttpsRedirection();
+}
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
 }
 app.UseCors("AllowAll");
 app.UseRateLimiter();
