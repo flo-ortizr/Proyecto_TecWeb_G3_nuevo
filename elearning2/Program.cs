@@ -19,7 +19,7 @@ using Npgsql;
 var builder = WebApplication.CreateBuilder(args);
 Env.Load();
 
-var port = Environment.GetEnvironmentVariable("PORT");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5052";
 if (!string.IsNullOrEmpty(port))
 {
     builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
