@@ -97,8 +97,7 @@ if (!string.IsNullOrEmpty(connectionString) &&
         Username = user,
         Password = pass,
         Database = uri.AbsolutePath.Trim('/'),
-        SslMode = SslMode.Disable,
-        TrustServerCertificate = true
+        SslMode = SslMode.Require
     };
 
     connectionString = builderCs.ConnectionString;
