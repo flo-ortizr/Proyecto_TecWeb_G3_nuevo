@@ -19,7 +19,7 @@ using Npgsql;
 var builder = WebApplication.CreateBuilder(args);
 Env.Load();
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5432";
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 if (!string.IsNullOrEmpty(port))
 {
     builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
@@ -133,11 +133,14 @@ builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
 builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 var app = builder.Build();
-app.UseSwagger();
-app.UseSwaggerUI();
+
 // Configure the HTTP request pipeline.
+app.UseRouting();
+
 if (app.Environment.IsDevelopment())
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseHttpsRedirection();
 }
 //using (var scope = app.Services.CreateScope())
