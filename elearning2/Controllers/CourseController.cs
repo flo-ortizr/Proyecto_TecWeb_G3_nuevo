@@ -53,6 +53,7 @@ namespace elearning2.Controllers
 
 
         [HttpPost]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> AddCourse([FromBody] CreateCourseDto dto)
         {
             if(!ModelState.IsValid) return ValidationProblem(ModelState);
@@ -62,6 +63,7 @@ namespace elearning2.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> UpdateCourse(Guid id, [FromBody] UpdateCourseDto dto)
         {
             if (!ModelState.IsValid) return ValidationProblem(ModelState);
@@ -71,6 +73,7 @@ namespace elearning2.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {
             if (!ModelState.IsValid) return ValidationProblem(ModelState);
