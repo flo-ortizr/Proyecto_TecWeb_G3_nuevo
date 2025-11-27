@@ -24,6 +24,7 @@ if (!string.IsNullOrEmpty(port))
 {
     builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 }
+
 Console.WriteLine($"App will listen on port: {port}");
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -97,7 +98,7 @@ if (!string.IsNullOrEmpty(connectionString) &&
         Username = user,
         Password = pass,
         Database = uri.AbsolutePath.Trim('/'),
-        SslMode = SslMode.Require,
+        SslMode = SslMode.Prefer,
         TrustServerCertificate = true
     };
 
