@@ -26,7 +26,7 @@ namespace elearning2.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         [Authorize]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -65,7 +65,7 @@ namespace elearning2.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> UpdateCourse(Guid id, [FromBody] UpdateCourseDto dto)
         {
@@ -75,7 +75,7 @@ namespace elearning2.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         [Authorize(Policy = "AdminOnly")]
         public async Task<IActionResult> DeleteCourse(Guid id)
         {
