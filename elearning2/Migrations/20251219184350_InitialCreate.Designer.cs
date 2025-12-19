@@ -12,7 +12,7 @@ using elearning2.Data;
 namespace elearning2.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251120214227_InitialCreate")]
+    [Migration("20251219184350_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,36 @@ namespace elearning2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Certificate", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("StudentId1")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId")
+                        .IsUnique();
+
+                    b.HasIndex("StudentId1");
+
+                    b.ToTable("Certificates");
+                });
 
             modelBuilder.Entity("elearning2.Models.Course", b =>
                 {
@@ -168,6 +198,19 @@ namespace elearning2.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Certificate", b =>
+                {
+                    b.HasOne("elearning2.Models.Student", null)
+                        .WithOne("Certificate")
+                        .HasForeignKey("Certificate", "StudentId");
+
+                    b.HasOne("elearning2.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId1");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("elearning2.Models.Course", b =>
                 {
                     b.HasOne("elearning2.Models.User", "Teacher")
@@ -225,6 +268,11 @@ namespace elearning2.Migrations
                     b.Navigation("Enrollments");
 
                     b.Navigation("Lessons");
+                });
+
+            modelBuilder.Entity("elearning2.Models.Student", b =>
+                {
+                    b.Navigation("Certificate");
                 });
 #pragma warning restore 612, 618
         }
