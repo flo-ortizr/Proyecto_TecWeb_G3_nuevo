@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\caleb\\Downloads\\elearning2\\elearning2\\elearning2.csproj": {}
+    "C:\\Users\\Flora\\Downloads\\Proyecto_TecWeb_G3_nuevo\\elearning2\\elearning2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\caleb\\Downloads\\elearning2\\elearning2\\elearning2.csproj": {
+    "C:\\Users\\Flora\\Downloads\\Proyecto_TecWeb_G3_nuevo\\elearning2\\elearning2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\caleb\\Downloads\\elearning2\\elearning2\\elearning2.csproj",
+        "projectUniqueName": "C:\\Users\\Flora\\Downloads\\Proyecto_TecWeb_G3_nuevo\\elearning2\\elearning2.csproj",
         "projectName": "elearning2",
-        "projectPath": "C:\\Users\\caleb\\Downloads\\elearning2\\elearning2\\elearning2.csproj",
-        "packagesPath": "C:\\Users\\caleb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\caleb\\Downloads\\elearning2\\elearning2\\obj\\",
+        "projectPath": "C:\\Users\\Flora\\Downloads\\Proyecto_TecWeb_G3_nuevo\\elearning2\\elearning2.csproj",
+        "packagesPath": "C:\\Users\\Flora\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Flora\\Downloads\\Proyecto_TecWeb_G3_nuevo\\elearning2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\caleb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Flora\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -112,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
